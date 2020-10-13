@@ -1,0 +1,11 @@
+<%= form_for @url, url: create_path do |f| %>
+  <%= f.text_field :original  %>
+  <%= f.submit "Short URL!" %>
+<% end %>
+
+<h1>TOP 100 Urls</h1>
+<ul>
+  <% @urls_ranking.each do |url| %>
+  <li><%= url.views %> - <%= url.original %> - <%= link_to show_url(url.short), show_path(url.short) %></li>
+  <% end %>
+</ul>
