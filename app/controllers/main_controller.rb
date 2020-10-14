@@ -5,7 +5,10 @@ class MainController < ApplicationController
   end
 
   def create
-    @url = Url.create(url_params)
+    @url = Url.new(url_params)
+    unless @url.save
+      render nothing: true, status: 400 and return
+    end
   end
 
   def show

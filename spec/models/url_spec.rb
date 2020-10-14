@@ -2,9 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Url, type: :model do
   context "after creating" do
-    it "should add the short code to the url" do
+    it "adds the short code to the url" do
       url = Url.new(original: 'https://google.com')
       expect { url.save }.to change { url.short }.from(nil)
+    end
+  end
+
+  context "before creating" do
+    it "scraps original page title and stores it" do
+      url = Url.new(original: 'https://google.com')
+      expect { url.save }.to change { url.title }.from(nil).to('Google')
     end
   end
 
